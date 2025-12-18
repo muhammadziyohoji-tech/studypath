@@ -1,0 +1,54 @@
+{
+  "name": "studypath",
+  "version": "1.0.0",
+  "description": "Data-driven country comparison platform for international students",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage"
+  },
+  "dependencies": {
+    "leaflet": "^1.9.4",
+    "next": "14.0.4",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-leaflet": "^4.2.1",
+    "recharts": "^2.15.4"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^14.3.1",
+    "@types/leaflet": "^1.9.21",
+    "@types/node": "^20.10.6",
+    "@types/react": "^18.2.46",
+    "@types/react-dom": "^18.2.18",
+    "autoprefixer": "^10.4.16",
+    "eslint": "^8.56.0",
+    "eslint-config-next": "14.0.4",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
+    "postcss": "^8.4.32",
+    "tailwindcss": "^3.4.0",
+    "typescript": "^5.3.3"
+  },
+  "keywords": [
+    "study abroad",
+    "international education",
+    "country comparison",
+    "education technology",
+    "next.js",
+    "react",
+    "typescript"
+  ],
+  "author": "studypath",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/muhammadziyohoji-tech/studypath.git"
+  }
+}
