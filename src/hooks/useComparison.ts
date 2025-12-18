@@ -10,7 +10,7 @@
  */
 
 import { useState, useCallback } from 'react';
-import { CountryComparison, ComparisonState } from '@/types/comparison';
+import { ComparisonState } from '@/types/comparison';
 import { compareCountries } from '@/lib/scoring/algorithm';
 import { COST_OF_LIVING_DATA } from '@/lib/constants/studyMetrics';
 import { useCountries } from './useCountries';
