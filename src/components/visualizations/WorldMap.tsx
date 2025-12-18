@@ -212,7 +212,7 @@ export default function WorldMap({ countries, onCountryClick }: WorldMapProps) {
 /**
  * Helper: Calculate overall score (simplified for map display)
  */
-function calculateOverallScore( country: StudyCountry): number {
+function calculateOverallScore(_country: StudyCountry): number {
   // This would use your actual scoring algorithm
   // Simplified version for demonstration
   return Math.round(Math.random() * 40 + 60); // Placeholder: 60-100
