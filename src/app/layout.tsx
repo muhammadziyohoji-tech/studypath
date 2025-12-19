@@ -3,14 +3,17 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import Link from 'next/link';
+import Script from 'next/script';
 import './globals.css';
 
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: 'StudyPath - Find Your Perfect Study Abroad Destination',
-  description: 'Data-driven platform helping international students compare and choose study abroad destinations based on education quality, cost, language, and visa factors.',
-  keywords: 'study abroad, international education, country comparison, student visa, education rankings',
+  description:
+    'Data-driven platform helping international students compare and choose study abroad destinations based on education quality, cost, language, and visa factors.',
+  keywords:
+    'study abroad, international education, country comparison, student visa, education rankings',
 };
 
 export default function RootLayout({
@@ -20,6 +23,16 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        {/* Google AdSense */}
+        <Script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8155292006538521"
+          crossOrigin="anonymous"
+          strategy="afterInteractive"
+        />
+      </head>
+
       <body className={inter.className}>
         <Navigation />
         <main>{children}</main>
@@ -41,22 +54,13 @@ function Navigation() {
 
           {/* Navigation Links */}
           <div className="hidden md:flex items-center gap-8">
-            <Link
-              href="/"
-              className="text-gray-600 hover:text-blue-600 transition font-medium"
-            >
+            <Link href="/" className="text-gray-600 hover:text-blue-600 transition font-medium">
               Home
             </Link>
-            <Link
-              href="/countries"
-              className="text-gray-600 hover:text-blue-600 transition font-medium"
-            >
+            <Link href="/countries" className="text-gray-600 hover:text-blue-600 transition font-medium">
               Countries
             </Link>
-            <Link
-              href="/compare"
-              className="text-gray-600 hover:text-blue-600 transition font-medium"
-            >
+            <Link href="/compare" className="text-gray-600 hover:text-blue-600 transition font-medium">
               Compare
             </Link>
             <Link
@@ -78,7 +82,7 @@ function Navigation() {
               viewBox="0 0 24 24"
               stroke="currentColor"
             >
-              <path d="M4 6h16M4 12h16M4 18h16"></path>
+              <path d="M4 6h16M4 12h16M4 18h16" />
             </svg>
           </button>
         </div>
