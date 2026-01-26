@@ -1,475 +1,344 @@
-// src/app/page.tsx
-'use client';
+"use client"; // Next.js App Routerda useState ishlatish uchun bu qator zarur
 
-import Link from 'next/link';
-import { motion } from 'framer-motion';
-import { useEffect, useState } from 'react';
+import React, { useState } from 'react';
+import { GraduationCap, Globe, Users, ChevronRight, Star, BookOpen, Award, DollarSign, Check } from 'lucide-react';
 
-export default function HomePage() {
-  const [mounted, setMounted] = useState(false);
+export default function StudyPath() {
+  const [activeTab, setActiveTab] = useState('home');
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  const countries = [
+    {
+      name: "USA",
+      flag: "🇺🇸",
+      universities: 4000,
+      avgCost: "$30,000",
+      rating: 4.8,
+      popular: true,
+      features: ["Top Universities", "Research Opportunities", "Cultural Diversity"]
+    },
+    {
+      name: "UK",
+      flag: "🇬🇧",
+      universities: 160,
+      avgCost: "$25,000",
+      rating: 4.7,
+      popular: true,
+      features: ["Historic Universities", "1-Year Masters", "Global Recognition"]
+    },
+    {
+      name: "Canada",
+      flag: "🇨🇦",
+      universities: 100,
+      avgCost: "$20,000",
+      rating: 4.9,
+      popular: true,
+      features: ["Post-Study Work", "Safe Environment", "Quality Education"]
+    },
+    {
+      name: "Australia",
+      flag: "🇦🇺",
+      universities: 43,
+      avgCost: "$28,000",
+      rating: 4.6,
+      popular: false,
+      features: ["Beautiful Campuses", "Work Opportunities", "High Living Standard"]
+    },
+    {
+      name: "Germany",
+      flag: "🇩🇪",
+      universities: 380,
+      avgCost: "$12,000",
+      rating: 4.7,
+      popular: false,
+      features: ["Low Tuition Fees", "Engineering Excellence", "EU Access"]
+    },
+    {
+      name: "Netherlands",
+      flag: "🇳🇱",
+      universities: 70,
+      avgCost: "$15,000",
+      rating: 4.5,
+      popular: false,
+      features: ["English Programs", "Innovation Hub", "Central Location"]
+    }
+  ];
 
-  if (!mounted) return null;
+  const features = [
+    {
+      icon: Globe,
+      title: "50+ Countries",
+      description: "Explore study destinations across the globe with detailed insights",
+      color: "from-blue-500 to-cyan-500"
+    },
+    {
+      icon: BookOpen,
+      title: "10,000+ Programs",
+      description: "Find the perfect program matching your career goals",
+      color: "from-purple-500 to-pink-500"
+    },
+    {
+      icon: Award,
+      title: "Scholarship Info",
+      description: "Access comprehensive scholarship and funding opportunities",
+      color: "from-orange-500 to-red-500"
+    },
+    {
+      icon: Users,
+      title: "Expert Guidance",
+      description: "Get personalized advice from education counselors",
+      color: "from-green-500 to-emerald-500"
+    }
+  ];
+
+  const stats = [
+    { value: "50K+", label: "Students Helped" },
+    { value: "100+", label: "Universities" },
+    { value: "45+", label: "Countries" },
+    { value: "98%", label: "Success Rate" }
+  ];
 
   return (
-    <div className="min-h-screen bg-slate-950 text-white overflow-hidden">
-      {/* Enhanced Floating Background Elements */}
-      <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <motion.div
-          animate={{
-            y: [0, -30, 0],
-            x: [0, 20, 0],
-          }}
-          transition={{
-            duration: 20,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-          className="absolute top-20 right-1/4 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl"
-        />
-        <motion.div
-          animate={{
-            y: [0, 40, 0],
-            x: [0, -30, 0],
-          }}
-          transition={{
-            duration: 25,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-          className="absolute bottom-20 left-1/4 w-[500px] h-[500px] bg-indigo-500/20 rounded-full blur-3xl"
-        />
-        <motion.div
-          animate={{
-            y: [0, -20, 0],
-            x: [0, 15, 0],
-          }}
-          transition={{
-            duration: 18,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-          className="absolute top-1/2 right-1/3 w-72 h-72 bg-purple-500/20 rounded-full blur-3xl"
-        />
-        <motion.div
-          animate={{
-            y: [0, 25, 0],
-            x: [0, -15, 0],
-          }}
-          transition={{
-            duration: 22,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-          className="absolute top-1/4 left-1/2 w-80 h-80 bg-emerald-500/15 rounded-full blur-3xl"
-        />
-        <motion.div
-          animate={{
-            y: [0, -35, 0],
-            x: [0, 25, 0],
-          }}
-          transition={{
-            duration: 28,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-          className="absolute bottom-1/3 right-1/2 w-64 h-64 bg-cyan-500/15 rounded-full blur-3xl"
-        />
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+      {/* Navigation */}
+      <nav className="bg-white/80 backdrop-blur-lg shadow-sm sticky top-0 z-50 border-b border-blue-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-16">
+            <div className="flex items-center space-x-2">
+              <div className="bg-gradient-to-br from-blue-600 to-indigo-600 p-2 rounded-xl">
+                <GraduationCap className="text-white" size={28} />
+              </div>
+              <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
+                StudyPath
+              </span>
+            </div>
+            <div className="hidden md:flex space-x-8">
+              {['Home', 'Countries', 'Programs', 'Compare'].map((item) => (
+                <button
+                  key={item}
+                  onClick={() => setActiveTab(item.toLowerCase())}
+                  // XATO TUZATILDI: Quyidagi qatorda backtick (`) belgilari qo'shildi
+                  className={`text-sm font-medium transition-all ${
+                    activeTab === item.toLowerCase()
+                      ? 'text-blue-600 border-b-2 border-blue-600'
+                      : 'text-gray-600 hover:text-blue-600'
+                  }`}
+                >
+                  {item}
+                </button>
+              ))}
+            </div>
+            <button className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-2 rounded-full font-medium hover:shadow-lg hover:scale-105 transition-all">
+              Get Started
+            </button>
+          </div>
+        </div>
+      </nav>
+
+      {/* Hero Section */}
+      <div className="relative overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+          <div className="text-center">
+            <div className="inline-flex items-center space-x-2 bg-blue-100 text-blue-700 px-4 py-2 rounded-full mb-6 animate-pulse">
+              <Star size={16} fill="currentColor" />
+              <span className="text-sm font-medium">Trusted by 50,000+ Students</span>
+            </div>
+            <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
+              Find Your Perfect
+              <span className="block bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent">
+                Study Abroad Destination
+              </span>
+            </h1>
+            <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
+              Discover universities, compare programs, and start your journey to global education with personalized guidance
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <button className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-8 py-4 rounded-full font-medium hover:shadow-2xl hover:scale-105 transition-all flex items-center justify-center group">
+                Explore Countries
+                <ChevronRight className="ml-2 group-hover:translate-x-1 transition-transform" size={20} />
+              </button>
+              <button className="bg-white text-gray-800 px-8 py-4 rounded-full font-medium hover:shadow-lg border-2 border-gray-200 transition-all">
+                Take Assessment
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Decorative Elements */}
+        <div className="absolute top-20 left-10 w-72 h-72 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob"></div>
+        <div className="absolute top-40 right-10 w-72 h-72 bg-blue-300 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-2000"></div>
+        <div className="absolute bottom-20 left-1/2 w-72 h-72 bg-pink-300 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-4000"></div>
       </div>
 
-      {/* Hero Section - Enhanced */}
-      <section className="relative bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-slate-900 via-blue-900 to-indigo-950">
-        {/* Additional hero background elements */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <motion.div
-            animate={{
-              scale: [1, 1.2, 1],
-              opacity: [0.3, 0.5, 0.3],
-            }}
-            transition={{
-              duration: 15,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-            className="absolute -top-40 -right-40 w-[600px] h-[600px] bg-blue-400/20 rounded-full blur-3xl"
-          />
-          <motion.div
-            animate={{
-              scale: [1, 1.3, 1],
-              opacity: [0.2, 0.4, 0.2],
-            }}
-            transition={{
-              duration: 20,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-            className="absolute -bottom-40 -left-40 w-[700px] h-[700px] bg-emerald-400/15 rounded-full blur-3xl"
-          />
+      {/* Stats Section */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          {stats.map((stat, idx) => (
+            <div key={idx} className="bg-white rounded-2xl p-6 text-center shadow-lg hover:shadow-xl transition-all hover:-translate-y-1">
+              <div className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent mb-2">
+                {stat.value}
+              </div>
+              <div className="text-gray-600 text-sm">{stat.label}</div>
+            </div>
+          ))}
         </div>
+      </div>
 
-        <div className="container mx-auto px-4 py-32 relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="max-w-5xl mx-auto text-center"
-          >
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-7xl font-bold mb-8 leading-tight tracking-tight"
-            >
-              Find Your Perfect Study
-              <span className="block bg-gradient-to-r from-blue-400 via-cyan-400 to-emerald-400 text-transparent bg-clip-text">
-                Abroad Destination
-              </span>
-            </motion.h1>
-            
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              className="text-xl text-slate-300 mb-12 max-w-3xl mx-auto leading-relaxed"
-            >
-              Data-driven insights to help you choose the right country for your international education
-            </motion.p>
-            
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
-              className="flex flex-col sm:flex-row gap-4 justify-center"
-            >
-              <Link
-                href="/countries"
-                className="group px-8 py-4 bg-gradient-to-r from-blue-500 to-emerald-500 text-white rounded-xl font-semibold text-lg hover:from-blue-600 hover:to-emerald-600 transition-all shadow-xl hover:shadow-2xl hover:scale-105 transform duration-300"
-              >
-                Explore Countries
-                <span className="inline-block ml-2 group-hover:translate-x-1 transition-transform">→</span>
-              </Link>
-              <Link
-                href="/compare"
-                className="px-8 py-4 backdrop-blur-lg bg-white/5 text-white rounded-xl font-semibold text-lg hover:bg-white/10 transition-all border border-white/20 hover:border-white/40 hover:scale-105 transform duration-300"
-              >
-                Compare Destinations
-              </Link>
-            </motion.div>
+      {/* Features Section */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="text-center mb-12">
+          <h2 className="text-4xl font-bold text-gray-900 mb-4">Why Choose StudyPath?</h2>
+          <p className="text-gray-600 text-lg">Everything you need to make the right decision</p>
+        </div>
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {features.map((feature, idx) => (
+            <div key={idx} className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all hover:-translate-y-2 group">
+              <div className={`w-14 h-14 bg-gradient-to-br ${feature.color} rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}>
+                <feature.icon className="text-white" size={28} />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-2">{feature.title}</h3>
+              <p className="text-gray-600">{feature.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
 
-            {/* Stats with Enhanced Glass Effect */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.8 }}
-              className="grid grid-cols-3 gap-6 mt-20 max-w-3xl mx-auto"
-            >
-              {[
-                { value: '250+', label: 'Countries' },
-                { value: '4', label: 'Key Factors' },
-                { value: '100%', label: 'Data-Driven' }
-              ].map((stat, i) => (
-                <motion.div
-                  key={i}
-                  whileHover={{ scale: 1.05, y: -5 }}
-                  className="backdrop-blur-lg bg-white/5 rounded-2xl p-6 border border-white/10 hover:border-white/30 transition-all hover:shadow-xl hover:shadow-blue-500/20"
-                >
-                  <div className="text-5xl font-bold mb-2 bg-gradient-to-r from-blue-400 to-emerald-400 text-transparent bg-clip-text">
-                    {stat.value}
+      {/* Popular Countries */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="flex justify-between items-center mb-12">
+          <div>
+            <h2 className="text-4xl font-bold text-gray-900 mb-2">Popular Destinations</h2>
+            <p className="text-gray-600">Start exploring top study abroad countries</p>
+          </div>
+          <button className="text-blue-600 font-medium flex items-center hover:gap-2 transition-all">
+            View All
+            <ChevronRight size={20} />
+          </button>
+        </div>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {countries.map((country, idx) => (
+            <div key={idx} className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all hover:-translate-y-2 overflow-hidden group">
+              <div className="relative h-48 bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center">
+                <div className="text-8xl">{country.flag}</div>
+                {country.popular && (
+                  <div className="absolute top-4 right-4 bg-yellow-400 text-yellow-900 px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1">
+                    <Star size={12} fill="currentColor" />
+                    Popular
                   </div>
-                  <div className="text-slate-300 text-sm tracking-wide">{stat.label}</div>
-                </motion.div>
-              ))}
-            </motion.div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* How It Works */}
-      <section className="py-32 relative">
-        <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
-            <h2 className="text-5xl font-bold text-center mb-6 tracking-tight">
-              How StudyPath Works
-            </h2>
-            <p className="text-xl text-slate-400 text-center mb-20 max-w-2xl mx-auto">
-              Three simple steps to discover your ideal study destination
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {[
-              { icon: '🔍', title: 'Search', desc: 'Browse 250+ countries with detailed information on education, costs, and living conditions', color: 'blue' },
-              { icon: '📊', title: 'Compare', desc: 'Use our scoring algorithm to objectively compare countries based on your priorities', color: 'green' },
-              { icon: '✅', title: 'Decide', desc: 'Get personalized recommendations and make an informed decision about your future', color: 'purple' }
-            ].map((step, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: i * 0.2 }}
-                whileHover={{ scale: 1.05, y: -5 }}
-                className="backdrop-blur-lg bg-white/5 rounded-3xl p-8 border border-white/10 hover:border-white/30 transition-all hover:shadow-2xl hover:shadow-blue-500/20"
-              >
-                <div className="text-6xl mb-6">{step.icon}</div>
-                <h3 className="text-2xl font-bold mb-4 tracking-tight">
-                  {i + 1}. {step.title}
-                </h3>
-                <p className="text-slate-400 leading-relaxed">
-                  {step.desc}
-                </p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Scoring Factors - Enhanced Bento Grid */}
-      <section className="py-32 relative">
-        <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
-            <h2 className="text-5xl font-bold text-center mb-6 tracking-tight">
-              <span className="bg-gradient-to-r from-blue-400 to-emerald-400 text-transparent bg-clip-text">
-                Our Scoring Methodology
-              </span>
-            </h2>
-            <p className="text-xl text-slate-400 text-center mb-20 max-w-3xl mx-auto">
-              We evaluate countries using a weighted algorithm based on four critical factors
-            </p>
-          </motion.div>
-
-          {/* Advanced Bento Grid Layout */}
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 max-w-7xl mx-auto">
-            {/* Education Quality - Large Card */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              whileHover={{ scale: 1.02, y: -8 }}
-              className="md:col-span-2 md:row-span-2 backdrop-blur-lg bg-gradient-to-br from-blue-500/10 to-blue-600/10 rounded-3xl p-10 border border-white/10 hover:border-blue-400/40 transition-all hover:shadow-2xl hover:shadow-blue-500/30 relative overflow-hidden group"
-            >
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              <div className="relative z-10">
-                <div className="text-7xl mb-6">🎓</div>
-                <h3 className="text-3xl font-bold mb-4 tracking-tight">Education Quality</h3>
-                <div className="text-6xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-cyan-400 text-transparent bg-clip-text">
-                  40%
-                </div>
-                <p className="text-slate-300 leading-relaxed text-lg">
-                  University rankings, research output, and academic reputation from top institutions worldwide
-                </p>
+                )}
               </div>
-            </motion.div>
-
-            {/* Affordability - Medium Card */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              whileHover={{ scale: 1.02, y: -8 }}
-              className="md:col-span-2 backdrop-blur-lg bg-gradient-to-br from-green-500/10 to-emerald-600/10 rounded-3xl p-8 border border-white/10 hover:border-green-400/40 transition-all hover:shadow-2xl hover:shadow-green-500/20 relative overflow-hidden group"
-            >
-              <div className="absolute inset-0 bg-gradient-to-br from-green-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              <div className="relative z-10">
-                <div className="text-6xl mb-4">💰</div>
-                <h3 className="text-2xl font-bold mb-3 tracking-tight">Affordability</h3>
-                <div className="text-5xl font-bold mb-4 bg-gradient-to-r from-green-400 to-emerald-400 text-transparent bg-clip-text">
-                  30%
-                </div>
-                <p className="text-slate-300 leading-relaxed">
-                  Living costs, tuition fees, and overall student expenses
-                </p>
-              </div>
-            </motion.div>
-
-            {/* Language - Small Card */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              whileHover={{ scale: 1.02, y: -8 }}
-              className="md:col-span-1 backdrop-blur-lg bg-gradient-to-br from-purple-500/10 to-purple-600/10 rounded-3xl p-8 border border-white/10 hover:border-purple-400/40 transition-all hover:shadow-2xl hover:shadow-purple-500/20 relative overflow-hidden group"
-            >
-              <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              <div className="relative z-10">
-                <div className="text-5xl mb-4">💬</div>
-                <h3 className="text-xl font-bold mb-3 tracking-tight">Language</h3>
-                <div className="text-4xl font-bold mb-4 bg-gradient-to-r from-purple-400 to-pink-400 text-transparent bg-clip-text">
-                  20%
-                </div>
-                <p className="text-slate-300 leading-relaxed text-sm">
-                  English proficiency and support
-                </p>
-              </div>
-            </motion.div>
-
-            {/* Visa Access - Small Card */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              whileHover={{ scale: 1.02, y: -8 }}
-              className="md:col-span-1 backdrop-blur-lg bg-gradient-to-br from-orange-500/10 to-orange-600/10 rounded-3xl p-8 border border-white/10 hover:border-orange-400/40 transition-all hover:shadow-2xl hover:shadow-orange-500/20 relative overflow-hidden group"
-            >
-              <div className="absolute inset-0 bg-gradient-to-br from-orange-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              <div className="relative z-10">
-                <div className="text-5xl mb-4">✈️</div>
-                <h3 className="text-xl font-bold mb-3 tracking-tight">Visa Access</h3>
-                <div className="text-4xl font-bold mb-4 bg-gradient-to-r from-orange-400 to-yellow-400 text-transparent bg-clip-text">
-                  10%
-                </div>
-                <p className="text-slate-300 leading-relaxed text-sm">
-                  Processing ease and work rights
-                </p>
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* Features - Enhanced Glassmorphism */}
-      <section className="py-32 relative">
-        <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
-            <h2 className="text-5xl font-bold text-center mb-20 tracking-tight">
-              <span className="bg-gradient-to-r from-blue-400 to-emerald-400 text-transparent bg-clip-text">
-                Powerful Features
-              </span>
-            </h2>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
-            {[
-              { icon: '📍', title: 'Interactive Maps', desc: 'Visualize study destinations on an interactive world map with score-based markers', color: 'from-blue-500/20 to-cyan-500/20' },
-              { icon: '📈', title: 'Data Visualizations', desc: 'Charts and graphs showing cost breakdowns, population trends, and more', color: 'from-green-500/20 to-emerald-500/20' },
-              { icon: '🔍', title: 'Advanced Filtering', desc: 'Filter by region, language, cost range, and other criteria to find your match', color: 'from-purple-500/20 to-pink-500/20' },
-              { icon: '📊', title: 'Real-Time Data', desc: 'Information sourced from REST Countries API and World Bank databases', color: 'from-orange-500/20 to-yellow-500/20' }
-            ].map((feature, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: i * 0.15 }}
-                whileHover={{ scale: 1.03, y: -5 }}
-                className={`backdrop-blur-lg bg-gradient-to-br ${feature.color} rounded-3xl p-8 border border-white/10 hover:border-white/30 transition-all hover:shadow-xl hover:shadow-blue-500/20 flex gap-6 relative overflow-hidden group`}
-              >
-                <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                <div className="flex-shrink-0 relative z-10">
-                  <div className="w-14 h-14 backdrop-blur-md bg-white/10 rounded-2xl flex items-center justify-center text-3xl border border-white/20">
-                    {feature.icon}
+              <div className="p-6">
+                <h3 className="text-2xl font-bold text-gray-900 mb-3">{country.name}</h3>
+                <div className="space-y-2 mb-4">
+                  <div className="flex items-center text-gray-600">
+                    <BookOpen size={16} className="mr-2 text-blue-600" />
+                    <span className="text-sm">{country.universities} Universities</span>
+                  </div>
+                  <div className="flex items-center text-gray-600">
+                    <DollarSign size={16} className="mr-2 text-green-600" />
+                    <span className="text-sm">Avg. {country.avgCost}/year</span>
+                  </div>
+                  <div className="flex items-center text-gray-600">
+                    <Star size={16} className="mr-2 text-yellow-500" fill="currentColor" />
+                    <span className="text-sm">{country.rating} Rating</span>
                   </div>
                 </div>
-                <div className="relative z-10">
-                  <h3 className="text-xl font-bold mb-3 tracking-tight">{feature.title}</h3>
-                  <p className="text-slate-300 leading-relaxed">
-                    {feature.desc}
-                  </p>
+                <div className="space-y-2 mb-4">
+                  {country.features.map((feat, i) => (
+                    <div key={i} className="flex items-center text-sm text-gray-600">
+                      <Check size={14} className="mr-2 text-green-500" />
+                      {feat}
+                    </div>
+                  ))}
                 </div>
-              </motion.div>
-            ))}
-          </div>
+                <button className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-3 rounded-xl font-medium hover:shadow-lg transition-all group-hover:scale-105">
+                  Explore {country.name}
+                </button>
+              </div>
+            </div>
+          ))}
         </div>
-      </section>
+      </div>
 
       {/* CTA Section */}
-      <section className="py-32 relative">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="container mx-auto px-4"
-        >
-          <div className="backdrop-blur-xl bg-gradient-to-br from-blue-500/20 to-emerald-600/20 rounded-[3rem] p-16 border border-white/20 text-center max-w-5xl mx-auto shadow-2xl relative overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-emerald-500/10 opacity-50" />
-            <div className="relative z-10">
-              <h2 className="text-5xl font-bold mb-6 tracking-tight">
-                Ready to Find Your Study Destination?
-              </h2>
-              <p className="text-xl text-slate-200 mb-10 max-w-2xl mx-auto leading-relaxed">
-                Join thousands of students who have used StudyPath to make informed decisions about their education abroad
-              </p>
-              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Link
-                  href="/countries"
-                  className="inline-block px-12 py-5 bg-gradient-to-r from-blue-500 to-emerald-500 text-white rounded-2xl font-semibold text-lg hover:from-blue-600 hover:to-emerald-600 transition-all shadow-xl hover:shadow-2xl"
-                >
-                  Get Started Now
-                </Link>
-              </motion.div>
-            </div>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 rounded-3xl p-12 text-center shadow-2xl relative overflow-hidden">
+          <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAxMCAwIEwgMCAwIDAgMTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS1vcGFjaXR5PSIwLjEiIHN0cm9rZS13aWR0aD0iMSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNncmlkKSIvPjwvc3ZnPg==')] opacity-30"></div>
+          <div className="relative z-10">
+            <h2 className="text-4xl font-bold text-white mb-4">Ready to Start Your Journey?</h2>
+            <p className="text-blue-100 text-lg mb-8 max-w-2xl mx-auto">
+              Join thousands of students who found their perfect study destination through StudyPath
+            </p>
+            <button className="bg-white text-blue-600 px-8 py-4 rounded-full font-bold hover:shadow-2xl hover:scale-105 transition-all">
+              Get Started Now
+            </button>
           </div>
-        </motion.div>
-      </section>
+        </div>
+      </div>
 
       {/* Footer */}
-      <footer className="relative border-t border-white/10 backdrop-blur-lg bg-slate-900/50">
-        <div className="container mx-auto px-4 py-16">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+      <footer className="bg-gray-900 text-gray-300 py-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid md:grid-cols-4 gap-8 mb-8">
             <div>
-              <h3 className="text-white text-2xl font-bold mb-4 tracking-tight bg-gradient-to-r from-blue-400 to-emerald-400 text-transparent bg-clip-text">
-                StudyPath
-              </h3>
-              <p className="text-slate-400 leading-relaxed">
-                Data-driven insights for international students making life-changing decisions
-              </p>
+              <div className="flex items-center space-x-2 mb-4">
+                <div className="bg-gradient-to-br from-blue-600 to-indigo-600 p-2 rounded-xl">
+                  <GraduationCap className="text-white" size={24} />
+                </div>
+                <span className="text-xl font-bold text-white">StudyPath</span>
+              </div>
+              <p className="text-sm text-gray-400">Your trusted partner in international education</p>
             </div>
-
             <div>
-              <h4 className="text-white font-semibold mb-4 tracking-tight">Quick Links</h4>
-              <ul className="space-y-3">
-                <li>
-                  <Link href="/countries" className="text-slate-400 hover:text-white transition">
-                    Browse Countries
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/compare" className="text-slate-400 hover:text-white transition">
-                    Compare
-                  </Link>
-                </li>
+              <h4 className="font-bold text-white mb-4">Quick Links</h4>
+              <ul className="space-y-2 text-sm">
+                <li><a href="#" className="hover:text-blue-400 transition-colors">Countries</a></li>
+                <li><a href="#" className="hover:text-blue-400 transition-colors">Universities</a></li>
+                <li><a href="#" className="hover:text-blue-400 transition-colors">Programs</a></li>
+                <li><a href="#" className="hover:text-blue-400 transition-colors">Scholarships</a></li>
               </ul>
             </div>
-
             <div>
-              <h4 className="text-white font-semibold mb-4 tracking-tight">Data Sources</h4>
-              <ul className="space-y-2 text-slate-400 text-sm">
-                <li>• REST Countries API</li>
-                <li>• World Bank Database</li>
-                <li>• QS University Rankings</li>
-                <li>• Numbeo Cost of Living Index</li>
+              <h4 className="font-bold text-white mb-4">Resources</h4>
+              <ul className="space-y-2 text-sm">
+                <li><a href="#" className="hover:text-blue-400 transition-colors">Blog</a></li>
+                <li><a href="#" className="hover:text-blue-400 transition-colors">Guides</a></li>
+                <li><a href="#" className="hover:text-blue-400 transition-colors">FAQs</a></li>
+                <li><a href="#" className="hover:text-blue-400 transition-colors">Support</a></li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-bold text-white mb-4">Contact</h4>
+              <ul className="space-y-2 text-sm text-gray-400">
+                <li>contact@inomjonov_mz</li>
+                <li>+998 (88) 117-13-77</li>
+                <li>Mon-Fri: 9AM - 6PM EST</li>
               </ul>
             </div>
           </div>
-
-          <div className="border-t border-white/10 mt-12 pt-8 text-center text-slate-500 text-sm">
-            <p>&copy; 2025 StudyPath. Built as an academic portfolio project.</p>
+          <div className="border-t border-gray-800 pt-8 text-center text-sm text-gray-400">
+            <p>&copy; 2026 StudyPath. All rights reserved.</p>
           </div>
         </div>
       </footer>
+
+      {/* Styles for animations */}
+      <style jsx>{`
+        @keyframes blob {
+          0%, 100% { transform: translate(0, 0) scale(1); }
+          25% { transform: translate(20px, -50px) scale(1.1); }
+          50% { transform: translate(-20px, 20px) scale(0.9); }
+          75% { transform: translate(50px, 50px) scale(1.05); }
+        }
+        .animate-blob {
+          animation: blob 7s infinite;
+        }
+        .animation-delay-2000 {
+          animation-delay: 2s;
+        }
+        .animation-delay-4000 {
+          animation-delay: 4s;
+        }
+      `}</style>
     </div>
   );
 }
