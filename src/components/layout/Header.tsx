@@ -8,58 +8,53 @@ import { useState } from 'react';
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
+  // Menyudagi linklar ro'yxati (kodni toza saqlash uchun)
+  const navLinks = [
+    { name: 'Home', href: '/' },
+    { name: 'Countries', href: '/countries' },
+    { name: 'Programs', href: '/programs' }, // Rasmda bor edi, qo'shib qo'ydim
+    { name: 'Compare', href: '/compare' },
+    { name: 'About', href: '/about' },
+  ];
+
   return (
-    <header className="bg-white shadow-md sticky top-0 z-50">
+    <header className="bg-white shadow-md sticky top-0 z-[100] w-full">
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-16">
+        <div className="flex items-center justify-between h-20">
+          
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 hover:opacity-80 transition">
+          <Link href="/" className="flex items-center gap-2 hover:opacity-80 transition z-50">
             <span className="text-2xl">🎓</span>
             <span className="text-xl font-bold text-gray-900">StudyPath</span>
           </Link>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-8">
-            <Link
-              href="/"
-              className="text-gray-600 hover:text-blue-600 transition font-medium"
-            >
-              Home
-            </Link>
-            <Link
-              href="/countries"
-              className="text-gray-600 hover:text-blue-600 transition font-medium"
-            >
-              Countries
-            </Link>
+          {/* Desktop Navigation (Laptop uchun) */}
+          <nav className="hidden md:flex items-center gap-6">
+            {navLinks.map((link) => (
+              <Link
+                key={link.name}
+                href={link.href}
+                className="text-gray-600 hover:text-blue-600 transition font-medium text-sm lg:text-base"
+              >
+                {link.name}
+              </Link>
+            ))}
             <Link
               href="/compare"
-              className="text-gray-600 hover:text-blue-600 transition font-medium"
-            >
-              Compare
-            </Link>
-            <Link
-              href="/about"
-              className="text-gray-600 hover:text-blue-600 transition font-medium"
-            >
-              About
-            </Link>
-            <Link
-              href="/compare"
-              className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition font-medium"
+              className="ml-4 px-5 py-2.5 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition font-medium shadow-sm"
             >
               Get Started
             </Link>
           </nav>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile Menu Button (Faqat telefonda ko'rinadi) */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden p-2 text-gray-600 hover:text-gray-900"
+            className="md:hidden p-2 text-gray-600 hover:text-gray-900 focus:outline-none z-50"
             aria-label="Toggle menu"
           >
             <svg
-              className="w-6 h-6"
+              className="w-7 h-7"
               fill="none"
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -76,47 +71,29 @@ export default function Header() {
           </button>
         </div>
 
-        {/* Mobile Navigation */}
+        {/* Mobile Navigation (Telefonda ochiladigan menyu) */}
         {mobileMenuOpen && (
-          <nav className="md:hidden py-4 border-t border-gray-200">
-            <div className="flex flex-col space-y-3">
-              <Link
-                href="/"
-                onClick={() => setMobileMenuOpen(false)}
-                className="px-4 py-2 text-gray-600 hover:text-blue-600 hover:bg-gray-50 rounded transition"
-              >
-                Home
-              </Link>
-              <Link
-                href="/countries"
-                onClick={() => setMobileMenuOpen(false)}
-                className="px-4 py-2 text-gray-600 hover:text-blue-600 hover:bg-gray-50 rounded transition"
-              >
-                Countries
-              </Link>
+          <div className="md:hidden absolute top-0 left-0 w-full bg-white shadow-xl border-t border-gray-100 pt-20 pb-10 z-40 animate-in fade-in slide-in-from-top-5 duration-300">
+            <nav className="flex flex-col space-y-4 px-6">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.name}
+                  href={link.href}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="text-lg text-gray-700 hover:text-blue-600 py-2 border-b border-gray-50 transition"
+                >
+                  {link.name}
+                </Link>
+              ))}
               <Link
                 href="/compare"
                 onClick={() => setMobileMenuOpen(false)}
-                className="px-4 py-2 text-gray-600 hover:text-blue-600 hover:bg-gray-50 rounded transition"
-              >
-                Compare
-              </Link>
-              <Link
-                href="/about"
-                onClick={() => setMobileMenuOpen(false)}
-                className="px-4 py-2 text-gray-600 hover:text-blue-600 hover:bg-gray-50 rounded transition"
-              >
-                About
-              </Link>
-              <Link
-                href="/compare"
-                onClick={() => setMobileMenuOpen(false)}
-                className="mx-4 px-4 py-2 bg-blue-600 text-white text-center rounded-lg hover:bg-blue-700 transition"
+                className="mt-4 px-4 py-3 bg-blue-600 text-white text-center rounded-xl font-semibold shadow-md"
               >
                 Get Started
               </Link>
-            </div>
-          </nav>
+            </nav>
+          </div>
         )}
       </div>
     </header>
