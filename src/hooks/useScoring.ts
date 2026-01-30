@@ -14,7 +14,6 @@
 import { useState, useEffect, useMemo } from 'react';
 import { ScoringFactors, WeightConfig } from '@/types/comparison';
 import { calculateCountryScore } from '@/lib/scoring/algorithm';
-import { DEFAULT_WEIGHTS } from '@/lib/scoring/weights';
 import { COST_OF_LIVING_DATA } from '@/lib/constants/studyMetrics';
 
 interface UseScoringOptions {
@@ -43,13 +42,11 @@ export function useScoring({
       setError(null);
 
       const costIndex = COST_OF_LIVING_DATA[countryCode] || 60;
-      const weights = customWeights || DEFAULT_WEIGHTS;
-
       const calculatedScores = calculateCountryScore(
         countryCode,
         languages,
         costIndex,
-        weights
+        
       );
 
       setScores(calculatedScores);

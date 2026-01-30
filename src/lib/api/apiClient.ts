@@ -1,15 +1,3 @@
-// src/lib/api/apiClient.ts
-
-/**
- * Base HTTP client with error handling and retry logic
- * 
- * WHY THIS APPROACH:
- * - Centralized error handling
- * - Automatic retries for transient failures
- * - Request/response interceptors
- * - Type-safe responses
- */
-
 import { ApiError } from '@/types/api';
 
 interface RequestOptions extends RequestInit {
@@ -29,9 +17,6 @@ class ApiClient {
     };
   }
 
-  /**
-   * Generic request method with retry logic
-   */
   private async request<T>(
     endpoint: string,
     options: RequestOptions = {}
@@ -46,7 +31,7 @@ class ApiClient {
     const url = this.baseURL + endpoint;
     const requestHeaders = { ...this.defaultHeaders, ...headers };
 
-    let lastError: Error | null = null;
+    let lastError: any = null;
 
     for (let attempt = 0; attempt <= retry; attempt++) {
       try {
@@ -62,41 +47,39 @@ class ApiClient {
           );
         }
 
-        const data = await response.json();
+        const text = await response.text();
+        const data = text ? JSON.parse(text) : {};
         return data as T;
-      } catch (error) {
-        lastError = error as Error;
+      } catch (error: unknown) { 
+        // 'unknown' xatosini mana bu yerda 'any' ga o'girib lastError'ga saqlaymiz
+        lastError = error;
 
-        // Don't retry on client errors (4xx)
-        if (error instanceof ApiError && error.statusCode < 500) {
-          throw error;
+        // Xatolikni tekshirish
+        if (error instanceof ApiError) {
+          if (error.statusCode < 500) {
+            throw error; // Client xatolarida (400, 401, 404) retry qilmaymiz
+          }
         }
 
-        // Wait before retrying
         if (attempt < retry) {
           await this.delay(retryDelay * (attempt + 1));
         }
       }
     }
 
-    throw lastError || new ApiError('Request failed after retries');
+    // Agar oxirida ham xato bo'lsa
+    if (lastError instanceof ApiError) {
+      throw lastError;
+    }
+    throw new ApiError(lastError?.message || 'Request failed', 500);
   }
 
-  /**
-   * GET request
-   */
+  // GET, POST, PUT, DELETE metodlari...
   async get<T>(endpoint: string, options?: RequestOptions): Promise<T> {
     return this.request<T>(endpoint, { ...options, method: 'GET' });
   }
 
-  /**
-   * POST request
-   */
-  async post<T>(
-    endpoint: string,
-    data?: any,
-    options?: RequestOptions
-  ): Promise<T> {
+  async post<T>(endpoint: string, data?: any, options?: RequestOptions): Promise<T> {
     return this.request<T>(endpoint, {
       ...options,
       method: 'POST',
@@ -104,14 +87,7 @@ class ApiClient {
     });
   }
 
-  /**
-   * PUT request
-   */
-  async put<T>(
-    endpoint: string,
-    data?: any,
-    options?: RequestOptions
-  ): Promise<T> {
+  async put<T>(endpoint: string, data?: any, options?: RequestOptions): Promise<T> {
     return this.request<T>(endpoint, {
       ...options,
       method: 'PUT',
@@ -119,23 +95,14 @@ class ApiClient {
     });
   }
 
-  /**
-   * DELETE request
-   */
   async delete<T>(endpoint: string, options?: RequestOptions): Promise<T> {
     return this.request<T>(endpoint, { ...options, method: 'DELETE' });
   }
 
-  /**
-   * Delay helper for retries
-   */
   private delay(ms: number): Promise<void> {
     return new Promise((resolve) => setTimeout(resolve, ms));
   }
 }
 
-// Export singleton instance
 export const apiClient = new ApiClient();
-
-// Export class for custom instances
 export default ApiClient;

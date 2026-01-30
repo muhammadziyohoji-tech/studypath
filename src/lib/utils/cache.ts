@@ -21,7 +21,7 @@ class SimpleCache {
     this.defaultTTL = defaultTTL;
   }
 
-  set<T>(key: string, data: T, ttl?: number): void {
+  set<T>(key: string, data: T, _ttl?: number): void {
     this.cache.set(key, {
       data,
       timestamp: Date.now(),
