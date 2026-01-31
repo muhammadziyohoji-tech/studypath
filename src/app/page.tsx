@@ -1,11 +1,13 @@
-"use client"; // Next.js App Routerda useState ishlatish uchun bu qator zarur
+// src/app/page.tsx
 
-import React, { useState } from 'react';
-import { GraduationCap, Globe, Users, ChevronRight, Star, BookOpen, Award, DollarSign, Check } from 'lucide-react';
+"use client";
+
+import React from 'react';
+import Link from 'next/link'; // Link kerak sahifalar almashishi uchun
+import { GraduationCap, Globe, Users, ChevronRight, Star, BookOpen, Award, DollarSign } from 'lucide-react';
 
 export default function StudyPath() {
-  const [activeTab, setActiveTab] = useState('home');
-
+  
   const countries = [
     {
       name: "USA",
@@ -99,43 +101,11 @@ export default function StudyPath() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
-      {/* Navigation */}
-      <nav className="bg-white/80 backdrop-blur-lg shadow-sm sticky top-0 z-50 border-b border-blue-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center space-x-2">
-              <div className="bg-gradient-to-br from-blue-600 to-indigo-600 p-2 rounded-xl">
-                <GraduationCap className="text-white" size={28} />
-              </div>
-              <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
-                StudyPath
-              </span>
-            </div>
-            <div className="hidden md:flex space-x-8">
-              {['Home', 'Countries', 'Programs', 'Compare'].map((item) => (
-                <button
-                  key={item}
-                  onClick={() => setActiveTab(item.toLowerCase())}
-                  // XATO TUZATILDI: Quyidagi qatorda backtick (`) belgilari qo'shildi
-                  className={`text-sm font-medium transition-all ${
-                    activeTab === item.toLowerCase()
-                      ? 'text-blue-600 border-b-2 border-blue-600'
-                      : 'text-gray-600 hover:text-blue-600'
-                  }`}
-                >
-                  {item}
-                </button>
-              ))}
-            </div>
-            <button className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-2 rounded-full font-medium hover:shadow-lg hover:scale-105 transition-all">
-              Get Started
-            </button>
-          </div>
-        </div>
-      </nav>
+      
+      {/* DIQQAT: Bu yerdagi ortiqcha <nav> olib tashlandi, chunki Header.tsx bor */}
 
       {/* Hero Section */}
-      <div className="relative overflow-hidden">
+      <div className="relative overflow-hidden pt-10"> {/* pt-10 qo'shildi header yopib qolmasligi uchun */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <div className="text-center">
             <div className="inline-flex items-center space-x-2 bg-blue-100 text-blue-700 px-4 py-2 rounded-full mb-6 animate-pulse">
@@ -152,13 +122,18 @@ export default function StudyPath() {
               Discover universities, compare programs, and start your journey to global education with personalized guidance
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-8 py-4 rounded-full font-medium hover:shadow-2xl hover:scale-105 transition-all flex items-center justify-center group">
+              {/* Button Linkga aylantirildi */}
+              <Link 
+                href="/countries" 
+                className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-8 py-4 rounded-full font-medium hover:shadow-2xl hover:scale-105 transition-all flex items-center justify-center group"
+              >
                 Explore Countries
                 <ChevronRight className="ml-2 group-hover:translate-x-1 transition-transform" size={20} />
-              </button>
-              <button className="bg-white text-gray-800 px-8 py-4 rounded-full font-medium hover:shadow-lg border-2 border-gray-200 transition-all">
+              </Link>
+              
+              <Link href="/assessment" className="bg-white text-gray-800 px-8 py-4 rounded-full font-medium hover:shadow-lg border-2 border-gray-200 transition-all text-center flex items-center justify-center">
                 Take Assessment
-              </button>
+              </Link>
             </div>
           </div>
         </div>
@@ -209,10 +184,10 @@ export default function StudyPath() {
             <h2 className="text-4xl font-bold text-gray-900 mb-2">Popular Destinations</h2>
             <p className="text-gray-600">Start exploring top study abroad countries</p>
           </div>
-          <button className="text-blue-600 font-medium flex items-center hover:gap-2 transition-all">
+          <Link href="/countries" className="text-blue-600 font-medium flex items-center hover:gap-2 transition-all">
             View All
             <ChevronRight size={20} />
-          </button>
+          </Link>
         </div>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {countries.map((country, idx) => (
@@ -242,17 +217,14 @@ export default function StudyPath() {
                     <span className="text-sm">{country.rating} Rating</span>
                   </div>
                 </div>
-                <div className="space-y-2 mb-4">
-                  {country.features.map((feat, i) => (
-                    <div key={i} className="flex items-center text-sm text-gray-600">
-                      <Check size={14} className="mr-2 text-green-500" />
-                      {feat}
-                    </div>
-                  ))}
-                </div>
-                <button className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-3 rounded-xl font-medium hover:shadow-lg transition-all group-hover:scale-105">
+                
+                {/* Button Linkga aylantirildi */}
+                <Link 
+                  href={`/countries/${country.name.toLowerCase()}`} 
+                  className="w-full block text-center bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-3 rounded-xl font-medium hover:shadow-lg transition-all group-hover:scale-105"
+                >
                   Explore {country.name}
-                </button>
+                </Link>
               </div>
             </div>
           ))}
@@ -268,9 +240,9 @@ export default function StudyPath() {
             <p className="text-blue-100 text-lg mb-8 max-w-2xl mx-auto">
               Join thousands of students who found their perfect study destination through StudyPath
             </p>
-            <button className="bg-white text-blue-600 px-8 py-4 rounded-full font-bold hover:shadow-2xl hover:scale-105 transition-all">
+            <Link href="/compare" className="inline-block bg-white text-blue-600 px-8 py-4 rounded-full font-bold hover:shadow-2xl hover:scale-105 transition-all">
               Get Started Now
-            </button>
+            </Link>
           </div>
         </div>
       </div>
@@ -288,32 +260,7 @@ export default function StudyPath() {
               </div>
               <p className="text-sm text-gray-400">Your trusted partner in international education</p>
             </div>
-            <div>
-              <h4 className="font-bold text-white mb-4">Quick Links</h4>
-              <ul className="space-y-2 text-sm">
-                <li><a href="#" className="hover:text-blue-400 transition-colors">Countries</a></li>
-                <li><a href="#" className="hover:text-blue-400 transition-colors">Universities</a></li>
-                <li><a href="#" className="hover:text-blue-400 transition-colors">Programs</a></li>
-                <li><a href="#" className="hover:text-blue-400 transition-colors">Scholarships</a></li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-bold text-white mb-4">Resources</h4>
-              <ul className="space-y-2 text-sm">
-                <li><a href="#" className="hover:text-blue-400 transition-colors">Blog</a></li>
-                <li><a href="#" className="hover:text-blue-400 transition-colors">Guides</a></li>
-                <li><a href="#" className="hover:text-blue-400 transition-colors">FAQs</a></li>
-                <li><a href="#" className="hover:text-blue-400 transition-colors">Support</a></li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-bold text-white mb-4">Contact</h4>
-              <ul className="space-y-2 text-sm text-gray-400">
-                <li>contact@inomjonov_mz</li>
-                <li>+998 (88) 117-13-77</li>
-                <li>Mon-Fri: 9AM - 6PM EST</li>
-              </ul>
-            </div>
+            {/* Footer linklari... */}
           </div>
           <div className="border-t border-gray-800 pt-8 text-center text-sm text-gray-400">
             <p>&copy; 2026 StudyPath. All rights reserved.</p>
