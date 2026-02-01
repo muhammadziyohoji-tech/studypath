@@ -55,7 +55,7 @@ Our goal is to show every student the path to accessing quality education.
               <div>
                 <h4 className="font-bold text-white mb-4 text-lg">Chapters</h4>
                 <ul className="space-y-3 text-sm">
-                  <li><a href="/" className="hover:text-blue-400 transition-colors">Bosh sahifa</a></li>
+                  <li><a href="/" className="hover:text-blue-400 transition-colors">Main page</a></li>
                   <li><a href="/programs" className="hover:text-blue-400 transition-colors">Grants va Projects</a></li>
                   <li><a href="/countries" className="hover:text-blue-400 transition-colors">Countries</a></li>
                 </ul>
@@ -63,7 +63,7 @@ Our goal is to show every student the path to accessing quality education.
 
               {/* 3. Bog'lanish (Contact & Support) */}
               <div>
-                <h4 className="font-bold text-white mb-4 text-lg">Yordam kerakmi?</h4>
+                <h4 className="font-bold text-white mb-4 text-lg">Do you have any problem?</h4>
                 <p className="text-gray-400 text-sm mb-4">
                   If you have any questions or suggestions regarding the project, feel free to contact us:
                 </p>

@@ -14,7 +14,7 @@ export default function Header() {
     { name: 'Countries', href: '/countries' },
     { name: 'Programs', href: '/programs' }, // Rasmda bor edi, qo'shib qo'ydim
     { name: 'Compare', href: '/compare' },
-    { name: 'About', href: '/about' },
+    { name: 'courses', href: '/courses' },
   ];
 
   return (
@@ -23,6 +23,9 @@ export default function Header() {
         <div className="flex items-center justify-between h-20">
           
           {/* Logo */}
+          <Link href="/universities" className="text-gray-600 hover:text-blue-600 transition font-medium">
+  Universities
+</Link>
           <Link href="/" className="flex items-center gap-2 hover:opacity-80 transition z-50">
             <span className="text-2xl">🎓</span>
             <span className="text-xl font-bold text-gray-900">StudyPath</span>
