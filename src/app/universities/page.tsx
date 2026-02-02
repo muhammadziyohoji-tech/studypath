@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useMemo } from 'react';
-import { Search, MapPin, Award, DollarSign, BookOpen, Check, X, ChevronLeft, ChevronRight, GraduationCap } from 'lucide-react';
+import { Search, MapPin, Award, BookOpen, X, ChevronLeft, ChevronRight, GraduationCap } from 'lucide-react';
 import { universitiesData } from '@/data/universities';
 
 export default function UniversitiesPage() {

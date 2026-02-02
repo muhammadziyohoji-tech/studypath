@@ -3,7 +3,7 @@
 "use client";
 
 import React from 'react';
-import { Calendar, MapPin, DollarSign, Users, ExternalLink, PlayCircle, CheckCircle, Video, PenTool, Globe } from 'lucide-react';
+import { Calendar, MapPin, DollarSign, Users, ExternalLink, PlayCircle, CheckCircle } from 'lucide-react';
 
 export default function ProgramsPage() {
   
