@@ -8,13 +8,14 @@ import { useState } from 'react';
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  // Menyudagi linklar ro'yxati (kodni toza saqlash uchun)
+  // Menyudagi linklar ro'yxati
+  // "Universities"ni shu yerga qo'shdim, shunda u ham telefonda, ham kompyuterda ko'rinadi
   const navLinks = [
     { name: 'Home', href: '/' },
     { name: 'Countries', href: '/countries' },
-    { name: 'Programs', href: '/programs' }, // Rasmda bor edi, qo'shib qo'ydim
+    { name: 'Universities', href: '/universities' }, // <--- Qo'shildi
+    { name: 'Programs', href: '/programs' },
     { name: 'Compare', href: '/compare' },
-    { name: 'courses', href: '/courses' },
   ];
 
   return (
@@ -23,15 +24,12 @@ export default function Header() {
         <div className="flex items-center justify-between h-20">
           
           {/* Logo */}
-          <Link href="/universities" className="text-gray-600 hover:text-blue-600 transition font-medium">
-  Universities
-</Link>
           <Link href="/" className="flex items-center gap-2 hover:opacity-80 transition z-50">
             <span className="text-2xl">🎓</span>
             <span className="text-xl font-bold text-gray-900">StudyPath</span>
           </Link>
 
-          {/* Desktop Navigation (Laptop uchun) */}
+          {/* Desktop Navigation (Kompyuter va Laptop uchun) */}
           <nav className="hidden md:flex items-center gap-6">
             {navLinks.map((link) => (
               <Link
@@ -43,7 +41,7 @@ export default function Header() {
               </Link>
             ))}
             <Link
-              href="/compare"
+              href="/assessment"
               className="ml-4 px-5 py-2.5 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition font-medium shadow-sm"
             >
               Get Started
@@ -78,6 +76,7 @@ export default function Header() {
         {mobileMenuOpen && (
           <div className="md:hidden absolute top-0 left-0 w-full bg-white shadow-xl border-t border-gray-100 pt-20 pb-10 z-40 animate-in fade-in slide-in-from-top-5 duration-300">
             <nav className="flex flex-col space-y-4 px-6">
+              {/* Bu yerda navLinks bo'yicha aylanyapti, demak Universities ham chiqadi */}
               {navLinks.map((link) => (
                 <Link
                   key={link.name}
@@ -89,7 +88,7 @@ export default function Header() {
                 </Link>
               ))}
               <Link
-                href="/compare"
+                href="/assessment"
                 onClick={() => setMobileMenuOpen(false)}
                 className="mt-4 px-4 py-3 bg-blue-600 text-white text-center rounded-xl font-semibold shadow-md"
               >

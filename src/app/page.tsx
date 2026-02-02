@@ -3,14 +3,15 @@
 "use client";
 
 import React from 'react';
-import Link from 'next/link'; // Link kerak sahifalar almashishi uchun
-import { GraduationCap, Globe, Users, ChevronRight, Star, BookOpen, Award, DollarSign } from 'lucide-react';
+import Link from 'next/link';
+import { Globe, Users, ChevronRight, Star, BookOpen, Award, DollarSign } from 'lucide-react';
 
 export default function StudyPath() {
   
   const countries = [
     {
       name: "USA",
+      slug: "usa", // Linklar xatosiz ishlashi uchun slug qo'shildi
       flag: "🇺🇸",
       universities: 4000,
       avgCost: "$30,000",
@@ -20,6 +21,7 @@ export default function StudyPath() {
     },
     {
       name: "UK",
+      slug: "united-kingdom",
       flag: "🇬🇧",
       universities: 160,
       avgCost: "$25,000",
@@ -29,6 +31,7 @@ export default function StudyPath() {
     },
     {
       name: "Canada",
+      slug: "canada",
       flag: "🇨🇦",
       universities: 100,
       avgCost: "$20,000",
@@ -38,6 +41,7 @@ export default function StudyPath() {
     },
     {
       name: "Australia",
+      slug: "australia",
       flag: "🇦🇺",
       universities: 43,
       avgCost: "$28,000",
@@ -47,6 +51,7 @@ export default function StudyPath() {
     },
     {
       name: "Germany",
+      slug: "germany",
       flag: "🇩🇪",
       universities: 380,
       avgCost: "$12,000",
@@ -56,6 +61,7 @@ export default function StudyPath() {
     },
     {
       name: "Netherlands",
+      slug: "netherlands",
       flag: "🇳🇱",
       universities: 70,
       avgCost: "$15,000",
@@ -102,17 +108,16 @@ export default function StudyPath() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       
-      {/* DIQQAT: Bu yerdagi ortiqcha <nav> olib tashlandi, chunki Header.tsx bor */}
-
       {/* Hero Section */}
-      <div className="relative overflow-hidden pt-10"> {/* pt-10 qo'shildi header yopib qolmasligi uchun */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+      <div className="relative overflow-hidden pt-10 pb-20"> 
+        {/* Z-INDEX TUZATILDI: relative z-20 qo'shildi, endi tugmalar telefonda ishlaydi */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-20">
           <div className="text-center">
             <div className="inline-flex items-center space-x-2 bg-blue-100 text-blue-700 px-4 py-2 rounded-full mb-6 animate-pulse">
               <Star size={16} fill="currentColor" />
               <span className="text-sm font-medium">Trusted by 50,000+ Students</span>
             </div>
-            <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
+            <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
               Find Your Perfect
               <span className="block bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent">
                 Study Abroad Destination
@@ -121,8 +126,8 @@ export default function StudyPath() {
             <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
               Discover universities, compare programs, and start your journey to global education with personalized guidance
             </p>
+            
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              {/* Button Linkga aylantirildi */}
               <Link 
                 href="/countries" 
                 className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-8 py-4 rounded-full font-medium hover:shadow-2xl hover:scale-105 transition-all flex items-center justify-center group"
@@ -138,14 +143,14 @@ export default function StudyPath() {
           </div>
         </div>
 
-        {/* Decorative Elements */}
-        <div className="absolute top-20 left-10 w-72 h-72 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob"></div>
-        <div className="absolute top-40 right-10 w-72 h-72 bg-blue-300 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-2000"></div>
-        <div className="absolute bottom-20 left-1/2 w-72 h-72 bg-pink-300 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-4000"></div>
+        {/* Orqa fondagi bezaklar (Blobs) */}
+        <div className="absolute top-20 left-10 w-72 h-72 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob z-0"></div>
+        <div className="absolute top-40 right-10 w-72 h-72 bg-blue-300 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-2000 z-0"></div>
+        <div className="absolute bottom-20 left-1/2 w-72 h-72 bg-pink-300 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-4000 z-0"></div>
       </div>
 
       {/* Stats Section */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 relative z-10">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
           {stats.map((stat, idx) => (
             <div key={idx} className="bg-white rounded-2xl p-6 text-center shadow-lg hover:shadow-xl transition-all hover:-translate-y-1">
@@ -159,7 +164,7 @@ export default function StudyPath() {
       </div>
 
       {/* Features Section */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 relative z-10">
         <div className="text-center mb-12">
           <h2 className="text-4xl font-bold text-gray-900 mb-4">Why Choose StudyPath?</h2>
           <p className="text-gray-600 text-lg">Everything you need to make the right decision</p>
@@ -178,7 +183,7 @@ export default function StudyPath() {
       </div>
 
       {/* Popular Countries */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 relative z-10">
         <div className="flex justify-between items-center mb-12">
           <div>
             <h2 className="text-4xl font-bold text-gray-900 mb-2">Popular Destinations</h2>
@@ -218,9 +223,9 @@ export default function StudyPath() {
                   </div>
                 </div>
                 
-                {/* Button Linkga aylantirildi */}
+                {/* BUTTON LINK TUZATILDI: slug ishlatildi */}
                 <Link 
-                  href={`/countries/${country.name.toLowerCase()}`} 
+                  href={`/countries/${country.slug}`} 
                   className="w-full block text-center bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-3 rounded-xl font-medium hover:shadow-lg transition-all group-hover:scale-105"
                 >
                   Explore {country.name}
@@ -232,7 +237,7 @@ export default function StudyPath() {
       </div>
 
       {/* CTA Section */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 relative z-10">
         <div className="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 rounded-3xl p-12 text-center shadow-2xl relative overflow-hidden">
           <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAxMCAwIEwgMCAwIDAgMTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS1vcGFjaXR5PSIwLjEiIHN0cm9rZS13aWR0aD0iMSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNncmlkKSIvPjwvc3ZnPg==')] opacity-30"></div>
           <div className="relative z-10">
@@ -247,28 +252,6 @@ export default function StudyPath() {
         </div>
       </div>
 
-      {/* Footer */}
-      <footer className="bg-gray-900 text-gray-300 py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-4 gap-8 mb-8">
-            <div>
-              <div className="flex items-center space-x-2 mb-4">
-                <div className="bg-gradient-to-br from-blue-600 to-indigo-600 p-2 rounded-xl">
-                  <GraduationCap className="text-white" size={24} />
-                </div>
-                <span className="text-xl font-bold text-white">StudyPath</span>
-              </div>
-              <p className="text-sm text-gray-400">Your trusted partner in international education</p>
-            </div>
-            {/* Footer linklari... */}
-          </div>
-          <div className="border-t border-gray-800 pt-8 text-center text-sm text-gray-400">
-            <p>&copy; 2026 StudyPath. All rights reserved.</p>
-          </div>
-        </div>
-      </footer>
-
-      {/* Styles for animations */}
       <style jsx>{`
         @keyframes blob {
           0%, 100% { transform: translate(0, 0) scale(1); }

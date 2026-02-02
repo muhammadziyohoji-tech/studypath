@@ -12,7 +12,7 @@ export default function Hero() {
             <Link href="/">Home</Link>
             <Link href="/countries">Countries</Link>
             <Link href="/compare">Compare</Link>
-            <Link href="/about">About</Link>
+            <Link href="/courses">courses</Link>
           </nav>
         </div>
 

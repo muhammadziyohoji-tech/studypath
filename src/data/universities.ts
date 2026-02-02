@@ -22,7 +22,43 @@ export interface University {
   image: string;
 }
 
+// 1. ANIQ ISHLAYDIGAN RASMLAR TO'PLAMI (Placeholder o'rniga)
+const campusImages = [
+  "https://images.unsplash.com/photo-1541339907198-e08756defefe?auto=format&fit=crop&w=800&q=80",
+  "https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=800&q=80",
+  "https://images.unsplash.com/photo-1592280771190-3e2e4d571952?auto=format&fit=crop&w=800&q=80",
+  "https://images.unsplash.com/photo-1498243691581-b145c3f54a5a?auto=format&fit=crop&w=800&q=80",
+  "https://images.unsplash.com/photo-1523050335456-c6bb74957e8c?auto=format&fit=crop&w=800&q=80",
+  "https://images.unsplash.com/photo-1525921429624-479b6a26d84d?auto=format&fit=crop&w=800&q=80",
+  "https://images.unsplash.com/photo-1492538368552-c6508c7a5c55?auto=format&fit=crop&w=800&q=80",
+  "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=800&q=80",
+  "https://images.unsplash.com/photo-1621640786029-22ad31054eb7?auto=format&fit=crop&w=800&q=80",
+  "https://images.unsplash.com/photo-1564981797816-1043664bf78d?auto=format&fit=crop&w=800&q=80"
+];
+
+// 2. UNIVERSITETLAR NOMLARI (KENGAYTIRILGAN RO'YXAT)
+const extraUniNames = [
+  "King's College London", "University of Sydney", "Technical University of Munich", "Seoul National University", "University of British Columbia",
+  "Paris Sciences et Lettres", "UCLA", "Kyoto University", "University of Washington", "New York University (NYU)",
+  "Duke University", "Zhejiang University", "University of Queensland", "Monash University", "London School of Economics (LSE)",
+  "University of Amsterdam", "Shanghai Jiao Tong University", "University of Bristol", "Delft University of Technology", "UNSW Sydney",
+  "KAIST", "Brown University", "University of Warwick", "University of Wisconsin-Madison", "University of Texas at Austin",
+  "City University of Hong Kong", "Tokyo Institute of Technology", "Sorbonne University", "University of Glasgow", "Pohang University (POSTECH)",
+  "University of Southampton", "University of Leeds", "Boston University", "University of Illinois Urbana-Champaign", "University of Birmingham",
+  "University of Sheffield", "Rice University", "Osaka University", "University of Copenhagen", "KTH Royal Institute of Technology",
+  "Lund University", "University of Zurich", "University of St Andrews", "University of Nottingham", "University of Western Australia",
+  "University of Helsinki", "University of Durham", "University of Geneva", "Yonsei University", "University of Alberta",
+  "Trinity College Dublin", "Auckland University", "Humboldt University Berlin", "Heidelberg University", "KU Leuven",
+  "McMaster University", "University of Oslo", "University of Basel", "University of Montreal", "Aarhus University",
+  "Technical University of Denmark", "University of Groningen", "Leiden University", "Erasmus University Rotterdam", "Uppsala University",
+  "Stockholm University", "Freie Universitat Berlin", "RWTH Aachen University", "University of Tubingen", "University of Freiburg",
+  "Nanyang Technological University", "Sungkyunkwan University", "Korea University", "Nagoya University", "Tohoku University",
+  "Kyushu University", "Hokkaido University", "National Taiwan University", "University of Malaya", "Indian Institute of Science",
+  "University of Cape Town", "University of Sao Paulo", "Pontificia Universidad Catolica de Chile", "Tecnologico de Monterrey", "University of Buenos Aires"
+];
+
 export const universitiesData: University[] = [
+  // --- 1 dan 30 gacha bo'lgan statik ma'lumotlar (o'zgarishsiz qoldi) ---
   { 
     id: 1, rank: 1, name: "Massachusetts Institute of Technology (MIT)", country: "United States", flag: "🇺🇸",
     tuition: "$57,980 / year", tuitionVal: 57980, acceptance: "<4%",
@@ -293,39 +329,31 @@ export const universitiesData: University[] = [
     description: "One of China's most prestigious and selective universities.", location: "Shanghai",
     image: "https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=800&q=80"
   },
-  // Adding universities 31-85 with a generated structure to ensure full list as requested
-  ...Array.from({ length: 55 }, (_, i) => {
+
+  // --- 31 dan 115 gacha generatsiya (Endi aniq nomlar va rasmlar bilan) ---
+  ...Array.from({ length: extraUniNames.length }, (_, i) => {
     const id = i + 31;
     const rank = id;
-    const names = [
-      "King's College London", "University of Sydney", "Technical University of Munich", "Seoul National University", "University of British Columbia",
-      "Paris Sciences et Lettres", "UCLA", "Kyoto University", "University of Washington", "New York University (NYU)",
-      "Duke University", "Zhejiang University", "University of Queensland", "Monash University", "London School of Economics (LSE)",
-      "University of Amsterdam", "Shanghai Jiao Tong University", "University of Bristol", "Delft University of Technology", "UNSW Sydney",
-      "KAIST", "Brown University", "University of Warwick", "University of Wisconsin-Madison", "University of Texas at Austin",
-      "City University of Hong Kong", "Tokyo Institute of Technology", "Sorbonne University", "University of Glasgow", "Pohang University (POSTECH)",
-      "University of Southampton", "University of Leeds", "Boston University", "University of Illinois Urbana-Champaign", "University of Birmingham",
-      "University of Sheffield", "Rice University", "Osaka University", "University of Copenhagen", "KTH Royal Institute of Technology",
-      "Lund University", "University of Zurich", "University of St Andrews", "University of Nottingham", "University of Western Australia",
-      "University of Helsinki", "University of Durham", "University of Geneva", "Yonsei University", "University of Alberta",
-      "Trinity College Dublin", "Auckland University", "Humboldt University Berlin", "Heidelberg University", "KU Leuven"
-    ];
     
-    // Simple logic to assign regions based on index (approximate for demo)
+    // Davlatlarni avtomatik belgilash (tahminiy)
     let country = "United States";
     let flag = "🇺🇸";
     let tuitionStr = "$50,000 / year";
     let tuitionVal = 50000;
     
-    if (i % 5 === 0) { country = "United Kingdom"; flag = "🇬🇧"; tuitionStr = "£25,000 / year"; tuitionVal = 32000; }
-    if (i % 5 === 1) { country = "Australia"; flag = "🇦🇺"; tuitionStr = "AUD 40,000 / year"; tuitionVal = 27000; }
-    if (i % 5 === 2) { country = "Germany"; flag = "🇩🇪"; tuitionStr = "€3,000 / year"; tuitionVal = 3200; }
-    if (i % 5 === 3) { country = "South Korea"; flag = "🇰🇷"; tuitionStr = "₩8,000,000 / year"; tuitionVal = 6000; }
+    if (i % 6 === 0) { country = "United Kingdom"; flag = "🇬🇧"; tuitionStr = "£25,000 / year"; tuitionVal = 32000; }
+    else if (i % 6 === 1) { country = "Australia"; flag = "🇦🇺"; tuitionStr = "AUD 40,000 / year"; tuitionVal = 27000; }
+    else if (i % 6 === 2) { country = "Germany"; flag = "🇩🇪"; tuitionStr = "€3,000 / year"; tuitionVal = 3200; }
+    else if (i % 6 === 3) { country = "South Korea"; flag = "🇰🇷"; tuitionStr = "₩8,000,000 / year"; tuitionVal = 6000; }
+    else if (i % 6 === 4) { country = "Canada"; flag = "🇨🇦"; tuitionStr = "CAD 45,000 / year"; tuitionVal = 35000; }
     
+    // Rasmni ro'yxatdan olish (aylanib yuradi)
+    const selectedImage = campusImages[i % campusImages.length];
+
     return {
       id,
       rank,
-      name: names[i] || `University Rank #${rank}`,
+      name: extraUniNames[i] || `University Rank #${rank}`,
       country,
       flag,
       tuition: tuitionStr,
@@ -338,10 +366,10 @@ export const universitiesData: University[] = [
       minIelts: 6.5,
       gpa: "3.4+",
       minGpa: 3.4,
-      link: "https://google.com/search?q=" + names[i],
+      link: "https://google.com/search?q=" + (extraUniNames[i] || `University Rank #${rank}`),
       description: `A top-ranked global university located in ${country}, known for excellence in research and education.`,
       location: "City Campus",
-      image: `https://images.unsplash.com/photo-${1500000000000 + i}?auto=format&fit=crop&w=800&q=80` // Dynamic placeholder
+      image: selectedImage // <-- MANA SHU QATOR ENDI ISHLAYDI
     };
   })
 ];
