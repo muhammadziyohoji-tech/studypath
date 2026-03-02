@@ -387,32 +387,19 @@ const CACHE_DURATION = 60 * 60 * 1000;
 
 ---
 
-## 🤝 Contributing
 
-This is an academic portfolio project, but suggestions are welcome!
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
----
 
 ## 📄 License
 
-MIT License - see [LICENSE](LICENSE) file
+University License - see [LICENSE](LICENSE) file
 
 ---
 
 ## 👤 About the Developer
 
-**[Your Name]**  
+**[Inomjonov Muhammadziyo]**  
 Computer Science Student | Full-Stack Developer
-
-- Portfolio: [yourname.com](https://yourname.com)
-- LinkedIn: [linkedin.com/in/yourname](https://linkedin.com/in/yourname)
-- Email: your.email@example.com
+- Email: muhammadziyo0127@gmail.com
 
 ---
 
@@ -424,5 +411,3 @@ Computer Science Student | Full-Stack Developer
 - [University Name] Computer Science Department for mentorship
 
 ---
-
-**Built with ❤️ for students exploring the world through education**
