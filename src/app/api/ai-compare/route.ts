@@ -1,8 +1,8 @@
-import { GoogleGenerativeAI } from "@google/generative-ai";
+import { Mistral } from '@mistralai/mistralai';
 import { NextResponse } from "next/server";
 
-// Gemini API ni initsializatsiya qilish
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || "");
+// Mistral AI ni initsializatsiya qilish
+const client = new Mistral({ apiKey: process.env.MISTRAL_API_KEY || "" });
 
 export async function POST(req: Request) {
   try {
@@ -13,10 +13,6 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "Two countries should be selected!" }, { status: 400 });
     }
 
-    // Limitlarga tushib qolmaslik va tez ishlashi uchun flash modelini tanlaymiz
-    const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
-
-    // Siz xohlagan o'sha PROFESSIONAL PROMPT
     const prompt = `
 You are acting as a Senior Global Mobility Consultant and Macroeconomic Analyst. Your task is to provide a high-level, strategic comparison between two destinations for an international student.
 
@@ -50,13 +46,18 @@ CONSTRAINTS:
 OUTPUT LANGUAGE: English.
     `;
 
-    const result = await model.generateContent(prompt);
-    const responseText = result.response.text();
+    // Mistral API chaqiruvi
+    const response = await client.chat.complete({
+      model: 'mistral-large-latest',
+      messages: [{ role: 'user', content: prompt }],
+    });
+
+    const responseText = response.choices?.[0]?.message?.content || "";
 
     return NextResponse.json({ analysis: responseText });
 
   } catch (error: any) {
-    console.error("Gemini API Error:", error);
+    console.error("Mistral API Error:", error);
     return NextResponse.json(
       { error: "Please try again." },
       { status: 500 }

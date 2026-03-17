@@ -116,7 +116,7 @@ export default function ConsultingPage() {
               <Sparkles className="w-8 h-8 text-blue-500" />
               <div>
                 <h1 className="text-2xl font-bold">AI Admissions Counselor</h1>
-                <p className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>Powered by Google Gemini AI</p>
+                <p className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>Powered by StudyPath AI</p>
               </div>
             </div>
             <button
