@@ -8,7 +8,7 @@ export default function UniversitiesPage() {
   // --- STATE ---
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedUnis, setSelectedUnis] = useState<number[]>([]);
-  const [showCompare, setShowCompare] = useState(false);
+  const [_showCompare, setShowCompare] = useState(false);
   
   const [filters, setFilters] = useState({
     myIelts: 0,
