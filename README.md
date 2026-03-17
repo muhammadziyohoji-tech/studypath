@@ -407,12 +407,9 @@ MIT License - see [LICENSE](LICENSE) file
 
 ## 👤 About the Developer
 
-**[Your Name]**  
+**[Inomjonov Muhammadziyo]**  
 Computer Science Student | Full-Stack Developer
-
-- Portfolio: [yourname.com](https://yourname.com)
-- LinkedIn: [linkedin.com/in/yourname](https://linkedin.com/in/yourname)
-- Email: your.email@example.com
+- Email: muhammadziyo0127@gmail.com.com
 
 ---
 
@@ -421,8 +418,4 @@ Computer Science Student | Full-Stack Developer
 - REST Countries API for free data access
 - Recharts team for excellent documentation
 - International student community for feedback
-- [University Name] Computer Science Department for mentorship
-
----
-
-**Built with ❤️ for students exploring the world through education**
+- Computer Science Department for mentorship

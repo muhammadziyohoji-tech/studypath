@@ -1,7 +1,3 @@
-// ================================================
-// src/components/layout/Navigation.tsx
-// ================================================
-
 'use client';
 
 import Link from 'next/link';
@@ -14,7 +10,7 @@ export default function Navigation() {
     { href: '/', label: 'Home' },
     { href: '/countries', label: 'Countries' },
     { href: '/compare', label: 'Compare' },
-    { href: '/about', label: 'About' },
+    { href: '/consulting', label: 'consulting' },
   ];
 
   const isActive = (href: string) => {

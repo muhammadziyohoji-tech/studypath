@@ -1,10 +1,8 @@
-// src/app/layout.tsx
-
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import Script from 'next/script';
 import Header from '@/components/layout/Header';
-import { Send, Phone } from 'lucide-react'; // Ikonkalar chaqirildi
+import { Send, Phone } from 'lucide-react';
 import './globals.css';
 
 const inter = Inter({ subsets: ['latin'] });
@@ -30,38 +28,37 @@ export default function RootLayout({
         />
       </head>
 
-      <body className={inter.className}>
+      <body className={`${inter.className} flex flex-col min-h-screen bg-gray-50`}>
         <Header />
-        <main className="min-h-screen">{children}</main>
+        
+        {/* Main qismi Footer'ni doim eng pastga itarib turadi */}
+        <main className="flex-grow">
+          {children}
+        </main>
 
-        {/* YANGILANGAN FOOTER */}
-        <footer className="bg-gray-900 text-gray-300 py-12 border-t border-gray-800">
+        <footer className="bg-gray-900 text-gray-300 py-12 border-t border-gray-800 mt-auto">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid md:grid-cols-3 gap-8 mb-8">
               
-              {/* 1. Biz haqimizda (About) */}
               <div>
                 <div className="flex items-center space-x-2 mb-4">
                   <span className="text-2xl">🎓</span>
                   <span className="text-xl font-bold text-white">StudyPath</span>
                 </div>
                 <p className="text-gray-400 mb-4 leading-relaxed">
-                 StudyPath is a project that helps young people find the best educational opportunities, scholarships, and summer schools around the world.
-Our goal is to show every student the path to accessing quality education.
+                  StudyPath is a project that helps young people find the best educational opportunities, scholarships, and summer schools around the world. Our goal is to show every student the path to accessing quality education.
                 </p>
               </div>
 
-              {/* 2. Tezkor Linklar */}
               <div>
                 <h4 className="font-bold text-white mb-4 text-lg">Chapters</h4>
                 <ul className="space-y-3 text-sm">
                   <li><a href="/" className="hover:text-blue-400 transition-colors">Main page</a></li>
-                  <li><a href="/programs" className="hover:text-blue-400 transition-colors">Grants va Projects</a></li>
+                  <li><a href="/programs" className="hover:text-blue-400 transition-colors">Grants and Projects</a></li>
                   <li><a href="/countries" className="hover:text-blue-400 transition-colors">Countries</a></li>
                 </ul>
               </div>
 
-              {/* 3. Bog'lanish (Contact & Support) */}
               <div>
                 <h4 className="font-bold text-white mb-4 text-lg">Do you have any problem?</h4>
                 <p className="text-gray-400 text-sm mb-4">
@@ -69,31 +66,23 @@ Our goal is to show every student the path to accessing quality education.
                 </p>
                 <ul className="space-y-4">
                   <li>
-                    <a 
-                      href="https://t.me/inomjonov_mz" 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="flex items-center group text-white hover:text-blue-400 transition-colors"
-                    >
+                    <a href="https://t.me/inomjonov_mz" target="_blank" rel="noopener noreferrer" className="flex items-center group text-white hover:text-blue-400 transition-colors">
                       <div className="bg-blue-600 p-2 rounded-lg mr-3 group-hover:bg-blue-500 transition">
                         <Send size={18} className="text-white" />
                       </div>
                       <div>
-                        <span className="block text-xs text-gray-400">contact me on the Telegram</span>
+                        <span className="block text-xs text-gray-400">Contact me on Telegram</span>
                         <span className="font-medium">@inomjonov_mz</span>
                       </div>
                     </a>
                   </li>
                   <li>
-                    <a 
-                      href="tel:+998881171377" 
-                      className="flex items-center group text-white hover:text-green-400 transition-colors"
-                    >
+                    <a href="tel:+998881171377" className="flex items-center group text-white hover:text-green-400 transition-colors">
                       <div className="bg-green-600 p-2 rounded-lg mr-3 group-hover:bg-green-500 transition">
                         <Phone size={18} className="text-white" />
                       </div>
                       <div>
-                        <span className="block text-xs text-gray-400">call us</span>
+                        <span className="block text-xs text-gray-400">Call us</span>
                         <span className="font-medium">+998 (88) 117-13-77</span>
                       </div>
                     </a>

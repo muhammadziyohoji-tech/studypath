@@ -13,10 +13,16 @@
     "test:coverage": "jest --coverage"
   },
   "dependencies": {
-    "framer-motion": "^12.23.26",
+    "@google/generative-ai": "^0.24.1",
+    "@next-auth/prisma-adapter": "^1.0.7",
+    "@prisma/client": "^7.5.0",
+    "bcryptjs": "^3.0.3",
+    "dotenv": "^17.3.1",
+    "framer-motion": "^12.36.0",
     "leaflet": "^1.9.4",
     "lucide-react": "^0.562.0",
     "next": "14.0.4",
+    "next-auth": "^4.24.13",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-leaflet": "^4.2.1",
@@ -25,6 +31,7 @@
   "devDependencies": {
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^14.3.1",
+    "@types/bcryptjs": "^3.0.0",
     "@types/jest": "^30.0.0",
     "@types/leaflet": "^1.9.21",
     "@types/node": "^20.10.6",
@@ -36,7 +43,9 @@
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
     "postcss": "^8.4.32",
+    "prisma": "^7.5.0",
     "tailwindcss": "^3.4.0",
+    "ts-node": "^10.9.2",
     "typescript": "^5.3.3"
   },
   "keywords": [
@@ -53,5 +62,8 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/muhammadziyohoji-tech/studypath.git"
+  },
+  "prisma": {
+    "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
   }
 }

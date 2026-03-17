@@ -1,103 +1,181 @@
-// src/components/layout/Header.tsx
-
 'use client';
 
-import Link from 'next/link';
 import { useState } from 'react';
+import Link from 'next/link';
+import { useRouter, usePathname } from 'next/navigation';
+import { 
+  GraduationCap, 
+  ArrowLeftRight, 
+  Globe, 
+  Building2, 
+  MessageSquare,
+  Menu,
+  X
+} from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export default function Header() {
+  const router = useRouter();
+  const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  // Menyudagi linklar ro'yxati
-  // "Universities"ni shu yerga qo'shdim, shunda u ham telefonda, ham kompyuterda ko'rinadi
-  const navLinks = [
-    { name: 'Home', href: '/' },
-    { name: 'Countries', href: '/countries' },
-    { name: 'Universities', href: '/universities' }, // <--- Qo'shildi
-    { name: 'Programs', href: '/programs' },
-    { name: 'Compare', href: '/compare' },
+  // Barcha sahifalar endi ochiq
+  const navigationItems = [
+    {
+      name: 'Programs',
+      href: '/programs',
+      icon: GraduationCap,
+    },
+    {
+      name: 'Compare',
+      href: '/compare',
+      icon: ArrowLeftRight,
+    },
+    {
+      name: 'Countries',
+      href: '/countries',
+      icon: Globe,
+    },
+    {
+      name: 'Universities',
+      href: '/universities',
+      icon: Building2,
+    },
+    {
+      name: 'Consulting',
+      href: '/consulting',
+      icon: MessageSquare,
+    },
   ];
 
+  const handleNavigation = (href: string) => {
+    router.push(href);
+    setMobileMenuOpen(false);
+  };
+
   return (
-    <header className="bg-white shadow-md sticky top-0 z-[100] w-full">
-      <div className="container mx-auto px-4">
+    <motion.header 
+      className="sticky top-0 z-50 w-full backdrop-blur-xl bg-gray-950/80 border-b border-white/10"
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{ duration: 0.6, ease: [0.6, 0.05, 0.01, 0.9] }}
+    >
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
-          
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 hover:opacity-80 transition z-50">
-            <span className="text-2xl">🎓</span>
-            <span className="text-xl font-bold text-gray-900">StudyPath</span>
+          <Link href="/" className="flex items-center gap-3 group">
+            <motion.div 
+              className="relative"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <GraduationCap className="w-10 h-10 text-blue-500" />
+              <motion.div
+                className="absolute inset-0 bg-blue-500 blur-xl opacity-0 group-hover:opacity-50 transition-opacity"
+                animate={{ scale: [1, 1.2, 1] }}
+                transition={{ duration: 2, repeat: Infinity }}
+              />
+            </motion.div>
+            <div className="flex flex-col">
+              <span className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-indigo-500 bg-clip-text text-transparent">
+                StudyPath
+              </span>
+              <span className="text-xs text-gray-400 font-medium">
+                Your Future Starts Here
+              </span>
+            </div>
           </Link>
 
-          {/* Desktop Navigation (Kompyuter va Laptop uchun) */}
-          <nav className="hidden md:flex items-center gap-6">
-            {navLinks.map((link) => (
-              <Link
-                key={link.name}
-                href={link.href}
-                className="text-gray-600 hover:text-blue-600 transition font-medium text-sm lg:text-base"
-              >
-                {link.name}
-              </Link>
-            ))}
-            <Link
-              href="/assessment"
-              className="ml-4 px-5 py-2.5 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition font-medium shadow-sm"
-            >
-              Get Started
-            </Link>
+          {/* Desktop Navigation */}
+          <nav className="hidden lg:flex items-center gap-2">
+            {navigationItems.map((item) => {
+              const Icon = item.icon;
+              const isActive = pathname === item.href;
+
+              return (
+                <motion.button
+                  key={item.name}
+                  onClick={() => handleNavigation(item.href)}
+                  className={`relative px-4 py-2.5 rounded-lg text-sm font-medium transition-all duration-300 flex items-center gap-2 ${
+                    isActive
+                      ? 'text-blue-400'
+                      : 'text-gray-300 hover:text-white'
+                  }`}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <Icon className="w-4 h-4" />
+                  <span>{item.name}</span>
+
+                  {/* Active indicator */}
+                  {isActive && (
+                    <motion.div
+                      layoutId="activeTab"
+                      className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 rounded-lg border border-blue-500/20"
+                      transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                    />
+                  )}
+
+                  {/* Hover glow */}
+                  <motion.div
+                    className="absolute inset-0 bg-blue-500/5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity"
+                    whileHover={{ scale: 1.1 }}
+                  />
+                </motion.button>
+              );
+            })}
           </nav>
 
-          {/* Mobile Menu Button (Faqat telefonda ko'rinadi) */}
-          <button
+          {/* Mobile Menu Button */}
+          <motion.button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden p-2 text-gray-600 hover:text-gray-900 focus:outline-none z-50"
-            aria-label="Toggle menu"
+            className="lg:hidden p-2 rounded-lg text-gray-300 hover:text-white hover:bg-white/5 transition-colors"
+            whileTap={{ scale: 0.9 }}
           >
-            <svg
-              className="w-7 h-7"
-              fill="none"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              {mobileMenuOpen ? (
-                <path d="M6 18L18 6M6 6l12 12" />
-              ) : (
-                <path d="M4 6h16M4 12h16M4 18h16" />
-              )}
-            </svg>
-          </button>
+            {mobileMenuOpen ? (
+              <X className="w-6 h-6" />
+            ) : (
+              <Menu className="w-6 h-6" />
+            )}
+          </motion.button>
         </div>
-
-        {/* Mobile Navigation (Telefonda ochiladigan menyu) */}
-        {mobileMenuOpen && (
-          <div className="md:hidden absolute top-0 left-0 w-full bg-white shadow-xl border-t border-gray-100 pt-20 pb-10 z-40 animate-in fade-in slide-in-from-top-5 duration-300">
-            <nav className="flex flex-col space-y-4 px-6">
-              {/* Bu yerda navLinks bo'yicha aylanyapti, demak Universities ham chiqadi */}
-              {navLinks.map((link) => (
-                <Link
-                  key={link.name}
-                  href={link.href}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="text-lg text-gray-700 hover:text-blue-600 py-2 border-b border-gray-50 transition"
-                >
-                  {link.name}
-                </Link>
-              ))}
-              <Link
-                href="/assessment"
-                onClick={() => setMobileMenuOpen(false)}
-                className="mt-4 px-4 py-3 bg-blue-600 text-white text-center rounded-xl font-semibold shadow-md"
-              >
-                Get Started
-              </Link>
-            </nav>
-          </div>
-        )}
       </div>
-    </header>
+
+      {/* Mobile Menu */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3 }}
+            className="lg:hidden border-t border-white/10 bg-gray-950/95 backdrop-blur-xl"
+          >
+            <div className="container mx-auto px-4 py-4 space-y-2">
+              {navigationItems.map((item) => {
+                const Icon = item.icon;
+                const isActive = pathname === item.href;
+
+                return (
+                  <motion.button
+                    key={item.name}
+                    onClick={() => handleNavigation(item.href)}
+                    className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg text-left transition-all ${
+                      isActive
+                        ? 'bg-blue-500/10 text-blue-400 border border-blue-500/20'
+                        : 'text-gray-300 hover:bg-white/5 hover:text-white'
+                    }`}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    <Icon className="w-5 h-5" />
+                    <span className="font-medium">{item.name}</span>
+                  </motion.button>
+                );
+              })}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.header>
   );
 }
